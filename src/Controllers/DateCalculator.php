@@ -3,7 +3,7 @@
 
     class DateCalculator {
         public function getMainPage($f3, $params) {
-			echo \Template::instance()->render('../views/main.htm');
+			echo \Template::instance()->render('main.htm');
         }
 
 		private function _calculateFromDate() {
