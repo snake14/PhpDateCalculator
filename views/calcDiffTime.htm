@@ -1,0 +1,19 @@
+<script type="text/javascript">
+	$(function() {
+		// Initialize date/time pickers.
+		$('#time1, #time2').daterangepicker({
+			singleDatePicker: true,
+			timePicker: true,
+			locale: {
+				format: 'MM/DD/YY hh:mm a'
+			}
+		});
+
+		attachSubmit('#calculate_diff_time_btn');
+	});
+</script>
+<form class="form-inline" id="calculate_diff_time">
+	<input type="text" class="form-control my-2 time-input" id="time1" name="time1" required>
+	<input type="text" class="form-control my-2 ml-3 time-input" id="time2" name="time2" required>
+</form>
+<button id="calculate_diff_time_btn" class="btn btn-primary" data-url="/calculate-diff-time" data-form="calculate_diff_time">Submit</button>

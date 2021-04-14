@@ -1,0 +1,27 @@
+<script type="text/javascript">
+	$(function() {
+		// Initialize date pickers.
+		$('#date_time').daterangepicker({
+			singleDatePicker: true,
+			timePicker: true,
+			locale: {
+				format: 'MM/DD/YY hh:mm a'
+			}
+		});
+
+		attachSubmit('#calculate_from_time_btn');
+	});
+</script>
+<form class="form-inline" id="calculate_from_time">
+	<input type="text" class="form-control my-2 time-input" id="date_time" name="date" required>
+	<select name="operation" id="operation" class="form-control ml-sm-3 my-2">
+		<option value="+">Add</option>
+		<option value="-">Subtract</option>
+	</select>
+	<input type="number" name="amount" id="amount" placeholder="Amount" class="form-control number-input ml-sm-3 my-2" required>
+	<select name="unit_type" id="unit_type" class="form-control ml-sm-3 my-2">
+		<option value="hour">Hours</option>
+		<option value="minute">Minutes</option>
+	</select>
+</form>
+<button id="calculate_from_time_btn" class="btn btn-primary" data-url="/calculate-from-time" data-form="calculate_from_time">Submit</button>

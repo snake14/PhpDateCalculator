@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+<script src="/js/main.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<style>
+.date-input, .number-input {
+	width: 120px !important;
+}
+.time-input {
+	width: 190px !important;
+}
+</style>
+<body >
+	<div class="container h-100" >
+		<div class="card h-100">
+			<div class="card-header">
+				<div class="row mb-5">
+					<div class="col"><h1>Date/Time Calculator</h1></div>
+				</div>
+				<ul class="nav nav-pills" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<a class="nav-link active" id="calc_from_date_tab" data-toggle="tab" href="#calc_from_date" role="tab" aria-controls="calc_from_date" aria-selected="true">Add/Subtract From a Date</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" id="calc_from_time_tab" data-toggle="tab" href="#calc_from_time" role="tab" aria-controls="calc_from_time" aria-selected="false">Add/Subtract From a Date/Time</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" id="calc_diff_date_tab" data-toggle="tab" href="#calc_diff_date" role="tab" aria-controls="calc_diff_date" aria-selected="false">Difference Between Dates</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" id="calc_diff_time_tab" data-toggle="tab" href="#calc_diff_time" role="tab" aria-controls="calc_diff_time" aria-selected="false">Difference Between Times</a>
+					</li>
+				</ul>
+			</div>
+			<div class="card-body" >
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="calc_from_date" role="tabpanel" aria-labelledby="calc_from_date_tab">
+						<include href="../views/calcFromDate.htm" />
+					</div>
+					<div class="tab-pane fade" id="calc_from_time" role="tabpanel" aria-labelledby="calc_from_time_tab">
+						<include href="../views/calcFromTime.htm" />
+					</div>
+					<div class="tab-pane fade" id="calc_diff_date" role="tabpanel" aria-labelledby="calc_diff_date_tab">
+						<include href="../views/calcDiffDate.htm" />
+					</div>
+					<div class="tab-pane fade" id="calc_diff_time" role="tabpanel" aria-labelledby="calc_diff_time_tab">
+						<include href="../views/calcDiffTime.htm" />
+					</div>
+				</div>
+			</div>
+			<div class="card-footer"></div>
+		</div>
+	</div>
+	<include href="../views/informativeModal.htm" />
+</body>

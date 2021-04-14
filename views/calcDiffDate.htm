@@ -1,0 +1,18 @@
+<script type="text/javascript">
+	$(function() {
+		// Initialize date pickers.
+		$('#date1, #date2').daterangepicker({
+			singleDatePicker: true,
+			locale: {
+				format: 'MM/DD/YY'
+			}
+		});
+
+		attachSubmit('#calculate_diff_date_btn');
+	});
+</script>
+<form class="form-inline" id="calculate_diff_date">
+	<input type="text" class="form-control date-input my-2" id="date1" name="date1" required>
+	<input type="text" class="form-control date-input my-2 ml-3" id="date2" name="date2" required>
+</form>
+<button id="calculate_diff_date_btn" class="btn btn-primary" data-url="/calculate-diff-date" data-form="calculate_diff_date">Submit</button>

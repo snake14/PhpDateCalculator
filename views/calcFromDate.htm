@@ -1,0 +1,27 @@
+<script type="text/javascript">
+	$(function() {
+		// Initialize date pickers.
+		$('#date').daterangepicker({
+			singleDatePicker: true,
+			locale: {
+				format: 'MM/DD/YY'
+			}
+		});
+
+		attachSubmit('#calculate_from_date_btn');
+	});
+</script>
+<form class="form-inline" id="calculate_from_date">
+	<input type="text" class="form-control my-2 date-input" id="date" name="date" required>
+	<select name="operation" id="operation" class="form-control ml-sm-3 my-2">
+		<option value="+">Add</option>
+		<option value="-">Subtract</option>
+	</select>
+	<input type="number" name="amount" id="amount" placeholder="Amount" class="form-control number-input ml-sm-3 my-2" required>
+	<select name="unit_type" id="unit_type" class="form-control ml-sm-3 my-2">
+		<option value="day">Days</option>
+		<option value="month">Months</option>
+		<option value="year">Years</option>
+	</select>
+</form>
+<button id="calculate_from_date_btn" class="btn btn-primary" data-url="/calculate-from-date" data-form="calculate_from_date">Submit</button>
