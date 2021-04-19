@@ -1,6 +1,8 @@
 <?php
     namespace Controllers;
 
+	use \Classes\DisplayableError;
+
     class DateCalculator {
         public function getMainPage($f3, $params) {
 			echo \Template::instance()->render('main.htm');
@@ -10,7 +12,9 @@
 			try {
 				$date = \Helpers\DateTime::calculateFromDate($_POST['date'], $_POST['operation'], $_POST['amount'], $_POST['unit_type']);
 			} catch (\Throwable $th) {
-				echo \json_encode([ 'success' => false, 'result' => $th->getMessage() ]);
+				// Only display the error message directly to the user if it's a specific subclass of Exception that we use.
+				$result = $th instanceof DisplayableError ? $th->getMessage() : "There was an issue calculating the answer.";
+				echo \json_encode([ 'success' => false, 'result' => $result ]);
 				exit;
 			}
 
@@ -29,8 +33,10 @@
 			try {
 				$diff = \Helpers\DateTime::calcDiffBetweenDates($_POST['date1'], $_POST['date2']);
 			} catch (\Throwable $th) {
-				echo \json_encode([ 'success' => false, 'result' => $th->getMessage() ]);
-				exit;
+				// Only display the error message directly to the user if it's a specific subclass of Exception that we use.
+				$result = $th instanceof DisplayableError ? $th->getMessage() : "There was an issue calculating the answer.";
+				echo \json_encode([ 'success' => false, 'result' => $result ]);
+				return;
 			}
 			$diff_result = $diff->format('%y Years').'<br>';
 			$diff_result .= $diff->format('%m Months').'<br>';
@@ -42,8 +48,10 @@
 			try {
 				$diff = \Helpers\DateTime::calcDiffBetweenDates($_POST['time1'], $_POST['time2']);
 			} catch (\Throwable $th) {
-				echo \json_encode([ 'success' => false, 'result' => $th->getMessage() ]);
-				exit;
+				// Only display the error message directly to the user if it's a specific subclass of Exception that we use.
+				$result = $th instanceof DisplayableError ? $th->getMessage() : "There was an issue calculating the answer.";
+				echo \json_encode([ 'success' => false, 'result' => $result ]);
+				return;
 			}
 			$time_diff_result = $diff->format('%d Days').'<br>';
 			$time_diff_result .= $diff->format('%h Hours').'<br>';

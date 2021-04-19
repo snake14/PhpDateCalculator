@@ -62,4 +62,18 @@
 			$this->assertNotEmpty($result);
 			$this->assertSame('2020-01-01 16:30', $result->format('Y-m-d H:i'));
 		}
+
+		public function testconvertToTimeZone() {
+			$result = DateTime::convertToTimeZone('America/Denver', '2021-04-16 15:25:00', 'America/Los_Angeles');
+			$offset = $result->getTimezone()->getOffset($result) / 3600;
+			$calculated_hour = 15 - (((new DateTimeZone('America/Los_Angeles'))->getOffset($result) / 3600) - $offset);
+			$this->assertSame("2021-04-16 {$calculated_hour}:25:00", $result->format('Y-m-d G:i:s'));
+		}
+
+		public function testconvertToTimeZoneUsingUtcDefault() {
+			$result = DateTime::convertToTimeZone('America/Denver', '2021-04-16 15:25:00');
+			$offset = $result->getTimezone()->getOffset($result) / 3600;
+			$calculated_hour = 15 - (((new DateTimeZone('UTC'))->getOffset($result) / 3600) - $offset);
+			$this->assertSame("2021-04-16 {$calculated_hour}:25:00", $result->format('Y-m-d G:i:s'));
+		}
 	}
