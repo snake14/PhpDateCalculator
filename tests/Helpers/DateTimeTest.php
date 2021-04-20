@@ -63,6 +63,33 @@
 			$this->assertSame('2020-01-01 16:30', $result->format('Y-m-d H:i'));
 		}
 
+		public function testconvertToTimeZoneInvalidToZone() {
+			try {
+				DateTime::convertToTimeZone('', '2021-04-16 15:25:00', 'America/Los_Angeles');
+				$this->fail('This should have failed with an invalid to time zone.');
+			} catch (\Throwable $th) {
+				$this->assertStringContainsString("The provided to time zone '' is not a valid time zone.", $th->getMessage());
+			}
+		}
+
+		public function testconvertToTimeZoneInvalidFromDate() {
+			try {
+				DateTime::convertToTimeZone('America/Denver', 'Meh', 'America/Los_Angeles');
+				$this->fail('This should have failed with an invalid from date.');
+			} catch (\Throwable $th) {
+				$this->assertStringContainsString("The provided from date/time 'Meh' is not a properly formatted date/time.", $th->getMessage());
+			}
+		}
+
+		public function testconvertToTimeZoneInvalidFromZone() {
+			try {
+				DateTime::convertToTimeZone('America/Denver', '2021-04-16 15:25:00', '');
+				$this->fail('This should have failed with an invalid from time zone.');
+			} catch (\Throwable $th) {
+				$this->assertStringContainsString("The provided from time zone '' is not a valid time zone.", $th->getMessage());
+			}
+		}
+
 		public function testconvertToTimeZone() {
 			$result = DateTime::convertToTimeZone('America/Denver', '2021-04-16 15:25:00', 'America/Los_Angeles');
 			$offset = $result->getTimezone()->getOffset($result) / 3600;

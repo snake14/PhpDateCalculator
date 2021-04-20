@@ -1,0 +1,48 @@
+<script type="text/javascript">
+	$(function() {
+		// Initialize date/time pickers.
+		$('#time').daterangepicker({
+			singleDatePicker: true,
+			timePicker: true,
+			locale: {
+				format: 'MM/DD/YY hh:mm a'
+			}
+		});
+
+		attachSubmit('#change_time_zone_btn');
+	});
+</script>
+<form class="form-inline" id="change_time_zone_form">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-3">
+				<div class="form-group my-2">
+					<label for="time" class="mr-2">Starting Date/Time</label>
+					<input type="text" class="form-control time-input" id="time" name="time" required>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group my-2">
+					<label for="from_time_zone" class="mr-2">From Time Zone</label>
+					<select name="from_time_zone" id="from_time_zone" class="form-control tz-select">
+						<repeat group="{{ @timeZones }}" value="{{ @timeZone }}">
+							<option value="{{ @timeZone }}" {{ @timeZone==@defaultTimeZone?'selected="selected"':'' }}>{{ @timeZone }}</option>
+						</repeat>
+					</select>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group my-2">
+					<label for="to_time_zone" class="mr-2">To Time Zone</label>
+					<select name="to_time_zone" id="to_time_zone" class="form-control tz-select">
+						<repeat group="{{ @timeZones }}" value="{{ @timeZone }}">
+							<option value="{{ @timeZone }}" {{ @timeZone==@defaultTimeZone?'selected="selected"':'' }}>{{ @timeZone }}</option>
+						</repeat>
+					</select>
+				</div>
+			</div>
+			<div class="col-auto"></div>
+		</div>
+	</div>
+</form>
+<button id="change_time_zone_btn" class="btn btn-primary" data-url="convert-time-zone" data-form="change_time_zone_form">Submit</button>

@@ -58,4 +58,17 @@
 			$time_diff_result .= $diff->format('%i Minutes');
 			echo \json_encode([ 'success' => true, 'result' => $time_diff_result ]);
 		}
+
+		public function convertTimeZone($f3, $params) {
+			try {
+				$time = \Helpers\DateTime::convertToTimeZone($_POST['to_time_zone'], $_POST['time'], $_POST['from_time_zone']);
+			} catch (\Throwable $th) {
+				// Only display the error message directly to the user if it's a specific subclass of Exception that we use.
+				$result = $th instanceof DisplayableError ? $th->getMessage() : "There was an issue calculating the answer.";
+				echo \json_encode([ 'success' => false, 'result' => $result ]);
+				return;
+			}
+
+			echo \json_encode([ 'success' => true, 'result' => $time->format('Y-m-d g:i a') ]);
+		}
 	}

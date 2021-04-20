@@ -18,6 +18,9 @@
 .time-input {
 	width: 190px !important;
 }
+.tz-select {
+	width: 330px !important;
+}
 </style>
 <body >
 	<div class="container h-100" >
@@ -39,9 +42,12 @@
 					<li class="nav-item" role="presentation">
 						<a class="nav-link" id="calc_diff_time_tab" data-toggle="tab" href="#calc_diff_time" role="tab" aria-controls="calc_diff_time" aria-selected="false">Difference Between Times</a>
 					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" id="change_time_zone_tab" data-toggle="tab" href="#change_time_zone" role="tab" aria-controls="change_time_zone" aria-selected="false">Convert Time Zones</a>
+					</li>
 				</ul>
 			</div>
-			<div class="card-body" >
+			<div class="card-body overflow-auto" >
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade show active" id="calc_from_date" role="tabpanel" aria-labelledby="calc_from_date_tab">
 						<include href="../views/calcFromDate.htm" />
@@ -54,6 +60,9 @@
 					</div>
 					<div class="tab-pane fade" id="calc_diff_time" role="tabpanel" aria-labelledby="calc_diff_time_tab">
 						<include href="../views/calcDiffTime.htm" />
+					</div>
+					<div class="tab-pane fade" id="change_time_zone" role="tabpanel" aria-labelledby="change_time_zone">
+						<include href="../views/changeTimeZone.htm" />
 					</div>
 				</div>
 			</div>
