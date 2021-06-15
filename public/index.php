@@ -11,5 +11,6 @@
 	$f3->route('POST /calculate-diff-date', 'Controllers\DateCalculator->calculateDiffDate');
 	$f3->route('POST /calculate-diff-time', 'Controllers\DateCalculator->calculateDiffTime');
 	$f3->route('POST /convert-time-zone', 'Controllers\DateCalculator->convertTimeZone');
+	$f3->set('TEMP', __DIR__ . '/tmp/');
 	$f3->run();
 ?>
